@@ -9,5 +9,4 @@ public class User
     public string Password { get; set; }
     public string DateOfBirth { get; set; }
     public DateTime createdAt { get; set; }
-
 }
