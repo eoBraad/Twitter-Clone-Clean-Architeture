@@ -15,6 +15,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-builder.Services.AddControllers();
+app.MapControllers();
 
 app.Run();
