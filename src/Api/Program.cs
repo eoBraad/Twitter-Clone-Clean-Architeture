@@ -1,9 +1,16 @@
+using Infrastructure.database.context;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
+
+var conString = builder.Configuration.GetConnectionString("Default");
+
+builder.Services.AddDbContext<TwitterCloneContext>(options => options.UseMySql(conString, ServerVersion.AutoDetect(conString)));
 
 var app = builder.Build();
 

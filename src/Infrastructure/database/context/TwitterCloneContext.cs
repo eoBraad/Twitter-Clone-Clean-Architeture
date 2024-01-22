@@ -7,5 +7,4 @@ public class TwitterCloneContext: DbContext
     public TwitterCloneContext(DbContextOptions<TwitterCloneContext> opt) : base(opt)
     {
     }
-
 }
