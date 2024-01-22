@@ -40,6 +40,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Username")
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("createdAt")
                         .HasColumnType("datetime(6)");
 
