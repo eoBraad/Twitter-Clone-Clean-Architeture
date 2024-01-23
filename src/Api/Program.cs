@@ -2,6 +2,7 @@ using Infrastructure.database.context;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using FluentValidation;
+using Infrastructure.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +15,13 @@ builder.Services.AddFluentValidationAutoValidation();
 
 builder.Services.AddControllers();
 
+
 var conString = builder.Configuration.GetConnectionString("Default");
 
 builder.Services.AddDbContext<TwitterCloneContext>(options => options.UseMySql(conString, ServerVersion.AutoDetect(conString)));
+
+// Services Configuration
+builder.Services.AddRepositoriesInfrastructure();
 
 var app = builder.Build();
 
