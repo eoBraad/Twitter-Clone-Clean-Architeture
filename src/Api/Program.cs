@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using Api.Config;
+using Api.Filter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,12 +17,15 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddControllers();
 
 
+// Database Configuration
 var conString = builder.Configuration.GetConnectionString("Default");
-
 builder.Services.AddDbContext<TwitterCloneContext>(options => options.UseMySql(conString, ServerVersion.AutoDetect(conString)));
 
 // Services Configuration
 builder.Services.ConfigureRepositories();
+
+// App Configuration
+builder.Services.AddMvc(opt => opt.Filters.Add<ExceptionFilter>());
 
 var app = builder.Build();
 
