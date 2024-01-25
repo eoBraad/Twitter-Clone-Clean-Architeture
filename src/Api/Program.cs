@@ -4,6 +4,7 @@ using FluentValidation.AspNetCore;
 using FluentValidation;
 using Api.Config;
 using Api.Filter;
+using Application.Services.AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,7 @@ builder.Services.AddSwaggerGen();
 // Add Global Validation
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddFluentValidationAutoValidation();
-
+    
 builder.Services.AddControllers();
 
 
@@ -23,6 +24,7 @@ builder.Services.AddDbContext<TwitterCloneContext>(options => options.UseMySql(c
 
 // Services Configuration
 builder.Services.ConfigureRepositories();
+builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 // App Configuration
 builder.Services.AddMvc(opt => opt.Filters.Add<ExceptionFilter>());
