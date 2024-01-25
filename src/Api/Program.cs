@@ -24,6 +24,8 @@ builder.Services.AddDbContext<TwitterCloneContext>(options => options.UseMySql(c
 
 // Services Configuration
 builder.Services.ConfigureRepositories();
+builder.Services.AddJwt(builder.Configuration);
+builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 // App Configuration
