@@ -1,4 +1,6 @@
+using System.Net;
 using Domain.Entities;
+using Domain.Exceptions;
 using Domain.Repositories;
 using Infrastructure.database.context;
 using Microsoft.EntityFrameworkCore;
@@ -21,10 +23,10 @@ public class UserRepository : IUserRepository
             return;
         
         if (user.Username == username)
-            throw new Exception("Username already exists");
+            throw new UseCaseException("Username already exists", (int)HttpStatusCode.BadRequest);
         
         if (user.Email == email)
-            throw new Exception("Email already exists");
+            throw new UseCaseException("Email already exists", (int)HttpStatusCode.BadRequest);
     }
 
     public async Task CreateUserAsync(User user)

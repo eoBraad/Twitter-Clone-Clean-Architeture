@@ -1,6 +1,7 @@
 using Application.Services.Utility;
 using AutoMapper;
 using Communication.Requests.User;
+using Communication.Responses;
 using Domain.Repositories;
 
 namespace Application.UseCases.User.CreateUser;
@@ -19,7 +20,7 @@ public class CreateUserUseCase : ICreateUserUseCase
         _userRepository = userRepository;
         _jwt = jwt;
     }
-    public async Task<string> Execute(CreateUserRequest request)
+    public async Task<CreateUserResponse> Execute(CreateUserRequest request)
     {
         await _userRepository.CheckUsernameOrEmailExistAsync(request.Username, request.Email);
 
@@ -31,6 +32,6 @@ public class CreateUserUseCase : ICreateUserUseCase
 
         var token = _jwt.GenerateToken(user);
 
-        return token;
+        return new CreateUserResponse(token, "User created successfully");
     }
 }
