@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.database.Repositories;
 
-class UserRepository : IUserRepository
+public class UserRepository : IUserRepository
 {
     private readonly TwitterCloneContext _context;
 
