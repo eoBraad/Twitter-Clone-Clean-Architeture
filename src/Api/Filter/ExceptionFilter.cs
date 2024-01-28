@@ -15,6 +15,7 @@ public class ExceptionFilter : IExceptionFilter
         }
         else
         {
+            Console.WriteLine(context.Exception.Message);
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             context.Result = new ObjectResult("Ocorreu um erro inesperado 😒");
         }
@@ -29,6 +30,14 @@ public class ExceptionFilter : IExceptionFilter
             context.HttpContext.Response.StatusCode = requestException.StatusCode;
 
             context.Result = new ObjectResult(requestException.Message);
+        }
+        if (context.Exception is ValidateException)
+        {
+            var requestException = context.Exception as ValidateException;
+
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            
+            context.Result = new ObjectResult(requestException.ValidateMessage);
         }
     }
 }

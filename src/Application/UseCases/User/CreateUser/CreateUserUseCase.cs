@@ -2,6 +2,7 @@ using Application.Services.Utility;
 using AutoMapper;
 using Communication.Requests.User;
 using Communication.Responses;
+using Domain.Exceptions;
 using Domain.Repositories;
 
 namespace Application.UseCases.User.CreateUser;
@@ -22,6 +23,13 @@ public class CreateUserUseCase : ICreateUserUseCase
     }
     public async Task<CreateUserResponse> Execute(CreateUserRequest request)
     {
+        var validation = new CreateUserValidation().Validate(request);
+        
+        if (!validation.IsValid)
+        {
+            throw new ValidateException(validation.Errors.Select(x => x.ErrorMessage).ToList());
+        }
+
         await _userRepository.CheckUsernameOrEmailExistAsync(request.Username, request.Email);
 
         request.Password = Encrypt.EncryptPassword(request.Password);

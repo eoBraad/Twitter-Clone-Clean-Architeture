@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using Api.Config;
-using Api.Filter;
 using Application.Services.AutoMapper;
+using Api.Filter;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -14,9 +16,6 @@ builder.Services.AddSwaggerGen();
 // Add Global Validation
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddFluentValidationAutoValidation();
-    
-builder.Services.AddControllers();
-
 
 // Database Configuration
 var conString = builder.Configuration.GetConnectionString("Default");
@@ -27,17 +26,26 @@ builder.Services.ConfigureRepositories();
 builder.Services.AddJwt(builder.Configuration);
 builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
+builder.Services.ConfigureUseCases();
 
 // App Configuration
 builder.Services.AddMvc(opt => opt.Filters.Add<ExceptionFilter>());
 
 var app = builder.Build();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 app.UseHttpsRedirection();
 
