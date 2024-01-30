@@ -25,4 +25,10 @@
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Config" />
+    <Folder Include="Controllers" />
+    <Folder Include="Filter" />
+  </ItemGroup>
 </Project>
