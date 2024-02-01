@@ -34,4 +34,11 @@ public class UserRepository : IUserRepository
         await _context.Users.AddAsync(user);
         _context.SaveChanges();
     }
+
+    public async Task<User> LoginUserAsync(string username, string password)
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(x => (x.Username == username || x.Email == username) && x.Password == password);
+
+        return user;
+    }
 }
