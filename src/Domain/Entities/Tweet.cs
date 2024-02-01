@@ -1,7 +1,6 @@
 ﻿using Domain.Common;
-using Domain.Entities;
 
-namespace Domain;
+namespace Domain.Entities;
 
 public class Tweet : BaseEntity
 {

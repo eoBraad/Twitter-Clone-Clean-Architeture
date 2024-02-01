@@ -1,9 +1,8 @@
 ﻿using Domain.Common;
-using Domain.Entities;
 
-namespace Domain;
+namespace Domain.Entities;
 
-public class TweetLikes : BaseEntity
+public class Likes : BaseEntity
 {
     public Guid UserId { get; set; }
     public Guid TweetId { get; set; }
