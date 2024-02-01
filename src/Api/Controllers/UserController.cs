@@ -18,7 +18,8 @@ public class UserController : ControllerBase
         return Ok(requestResult);
     }
 
-    [HttpPost("/login")]
+    [HttpPost]
+    [Route("login")]
     public async Task<IActionResult> LoginUser([FromBody] LoginUserRequest request, [FromServices] ILoginUserUseCase loginUserUseCase)
     {
         var response = await loginUserUseCase.Execute(request);
