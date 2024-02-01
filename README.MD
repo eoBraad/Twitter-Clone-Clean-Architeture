@@ -15,10 +15,10 @@
 
 #### Business rules
 
-- [ ] Only users over 18 can create an account 
+- [x] Only users over 18 can create an account 
 - [ ] Only the tweet user can edit
 - [ ] Users can only like a tweet once
-- [ ] It should not be possible to create 2 accounts with the same email or username
+- [x] It should not be possible to create 2 accounts with the same email or username
 
 #### Non-functional requirements
 
