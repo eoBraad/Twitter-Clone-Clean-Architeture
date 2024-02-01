@@ -8,8 +8,8 @@
 ***- EF Core***
 
 #### Functional Requirements
-- [ ] Should be able create a new user
-- [ ] User should be able login in your account
+- [x] Should be able create a new user
+- [x] User should be able login in your account
 - [ ] Should be able to post a tweet
 - [ ] User should be able upload an profile pic
 
