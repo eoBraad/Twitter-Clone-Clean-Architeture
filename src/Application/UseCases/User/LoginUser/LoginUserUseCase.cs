@@ -17,6 +17,12 @@ public class LoginUserUseCase : ILoginUserUseCase
 
     private readonly Jwt _jwt;
 
+    public LoginUserUseCase(IUserRepository userRepository, Jwt jwt)
+    {
+        _jwt = jwt;
+        _userRepository = userRepository;
+    }
+
     public async Task<LoginUserResponse> Execute(LoginUserRequest request)
     {
         var validation = new LoginUserValidation().Validate(request);
@@ -26,7 +32,7 @@ public class LoginUserUseCase : ILoginUserUseCase
             throw new ValidateException(validation.Errors.Select(x => x.ErrorMessage).ToList());
         }
 
-        var user = await _userRepository.LoginUserAsync(request.Credentials, request.Password) ?? throw new UseCaseException("Invalid User Creadential or Password", (int)HttpStatusCode.Unauthorized);
+        var user = await _userRepository.LoginUserAsync(request.Credentials, Encrypt.EncryptPassword(request.Password)) ?? throw new UseCaseException("Invalid User Creadential or Password", (int)HttpStatusCode.Unauthorized);
 
         var token = _jwt.GenerateToken(user);
 

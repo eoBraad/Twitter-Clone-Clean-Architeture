@@ -1,6 +1,6 @@
 ﻿namespace communication.Responses;
 
-public record class LoginUserResponse
+public class LoginUserResponse
 {
-    public string Token { get; init; }
+    public string Token { get; set; }
 }
