@@ -22,5 +22,6 @@
   <ItemGroup>
     <Folder Include="Services\*" />
     <Folder Include="UseCases\*" />
+    <Folder Include="UseCases\Tweet\" />
   </ItemGroup>
 </Project>
