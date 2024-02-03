@@ -1,4 +1,5 @@
 using AutoMapper;
+using Communication.Requests.Tweet;
 using Communication.Requests.User;
 using Domain.Entities;
 
@@ -9,5 +10,6 @@ public class AutoMapperConfig : Profile
     public AutoMapperConfig()
     {
         CreateMap<CreateUserRequest, User>();
+        CreateMap<CreateTweetRequest, Tweet>();
     }
 }

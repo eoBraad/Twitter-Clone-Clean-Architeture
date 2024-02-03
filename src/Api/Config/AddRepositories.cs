@@ -1,4 +1,5 @@
 using Domain.Repositories;
+using Infrastructure;
 using Infrastructure.database.Repositories;
 
 namespace Api.Config
@@ -8,6 +9,7 @@ namespace Api.Config
         public static void ConfigureRepositories(this IServiceCollection service)
         {
             service.AddScoped<IUserRepository, UserRepository>();
+            service.AddScoped<ITweetRepository, TweetRepository>();
         }
 
     }

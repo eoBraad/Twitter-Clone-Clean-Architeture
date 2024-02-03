@@ -6,4 +6,8 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Requests\Tweet\" />
+  </ItemGroup>
+
 </Project>

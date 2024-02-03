@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.UseCases.Tweet.CreateTweet;
 using Application.UseCases.User.CreateUser;
 using Application.UseCases.User.LoginUser;
 
@@ -13,5 +14,6 @@ public static class AddUseCases
     {
         service.AddScoped<ICreateUserUseCase, CreateUserUseCase>();
         service.AddScoped<ILoginUserUseCase, LoginUserUseCase>();
+        service.AddScoped<ICreateTweetUseCase, CreateTweetUseCase>();
     }
 }
