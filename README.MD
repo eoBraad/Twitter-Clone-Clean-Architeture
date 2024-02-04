@@ -23,4 +23,4 @@
 #### Non-functional requirements
 
 - [ ] Using amazon s3 to store photos
-- [ ] Using JWT to authentication
+- [x] Using JWT to authentication
