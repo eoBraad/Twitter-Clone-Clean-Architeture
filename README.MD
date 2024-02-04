@@ -10,7 +10,7 @@
 #### Functional Requirements
 - [x] Should be able create a new user
 - [x] User should be able login in your account
-- [ ] Should be able to post a tweet
+- [x] Should be able to post a tweet
 - [ ] User should be able upload an profile pic
 
 #### Business rules
